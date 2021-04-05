@@ -20,18 +20,7 @@ function showSuccess(input) {
   formControl.classList.remove("error");
 }
 
-// Check email is valid
-function isValidEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-}
-
-// Event listeners
-function submitForm(event) {
-  event.preventDefault();
-
-  console.log("Form submitted", event.target.elements);
-
+function validateForm(username, email, password, password2) {
   if (username.value === "") {
     showError(username, "Username is required");
   } else {
@@ -57,6 +46,26 @@ function submitForm(event) {
   } else {
     showSuccess(password2);
   }
+}
+
+// Check email is valid
+function isValidEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+// Event listeners
+function submitForm(event) {
+  event.preventDefault();
+
+  console.log("Form submitted", event.target.elements);
+
+  const usernameInput = event.target.elements.username;
+  const emailInput = event.target.elements.email;
+  const passwordInput = event.target.elements.password;
+  const password2Input = event.target.elements.password2;
+
+  validateForm(usernameInput, emailInput, passwordInput, password2Input);
 }
 
 form.addEventListener("submit", submitForm);
