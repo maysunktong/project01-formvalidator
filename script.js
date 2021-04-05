@@ -59,7 +59,7 @@ function validateForm(username, email, password, password2) {
   if (password2.value === "") {
     showError(password2, "Matching password is required");
   } else if (password.value !== password2.value) {
-    showError(password2, "Password do not match");
+    showError(password2, "Passwords do not match");
   } else {
     showSuccess(password2, "Passwords match! ✔");
   }
