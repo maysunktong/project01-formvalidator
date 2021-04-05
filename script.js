@@ -13,18 +13,24 @@ function showError(input, errorMessage) {
   small.innerText = errorMessage;
 }
 
-// Show success outline
-function showSuccess(input) {
+// Show input success
+function showSuccess(input, successMessage) {
   const formControl = input.parentElement;
   formControl.classList.add("success");
   formControl.classList.remove("error");
+  const small = formControl.querySelector("small");
+  small.innerText = successMessage;
 }
 
 function validateForm(username, email, password, password2) {
+  const passwordRegex = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
+
+  console.log(password);
+
   if (username.value === "") {
     showError(username, "Username is required");
   } else {
-    showSuccess(username);
+    showSuccess(username, "Username is valid");
   }
 
   if (email.value === "") {
@@ -32,19 +38,26 @@ function validateForm(username, email, password, password2) {
   } else if (!isValidEmail(email.value)) {
     showError(email, "Email is not valid");
   } else {
-    showSuccess(email);
+    showSuccess(email, "Email is valid");
   }
 
   if (password.value === "") {
     showError(password, "Password is required");
+  } else if (!password.value.match(passwordRegex)) {
+    showError(
+      password,
+      "Password must be at least 8 characters containing at least number 0-9, A-Z and one special character"
+    );
   } else {
-    showSuccess(password);
+    showSuccess(password, "Password is okay");
   }
 
   if (password2.value === "") {
     showError(password2, "Matching password is required");
+  } else if (password.value !== password2.value) {
+    showError(password2, "Password do not match");
   } else {
-    showSuccess(password2);
+    showSuccess(password2, "Passwords match!");
   }
 }
 
@@ -67,5 +80,7 @@ function submitForm(event) {
 
   validateForm(usernameInput, emailInput, passwordInput, password2Input);
 }
+
+// Check required fields
 
 form.addEventListener("submit", submitForm);
