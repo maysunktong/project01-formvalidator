@@ -34,7 +34,7 @@ function validateForm(username, email, password, password2) {
       "Username must contain at least 4 characters, a-z, A-Z"
     );
   } else {
-    showSuccess(username, "Username is valid");
+    showSuccess(username, "Username is valid ✔");
   }
 
   if (email.value === "") {
@@ -42,7 +42,7 @@ function validateForm(username, email, password, password2) {
   } else if (!isValidEmail(email.value)) {
     showError(email, "Email is not valid");
   } else {
-    showSuccess(email, "Email is valid");
+    showSuccess(email, "Email is valid ✔");
   }
 
   if (password.value === "") {
@@ -53,7 +53,7 @@ function validateForm(username, email, password, password2) {
       "Password must be at least 8 characters containing at least number 0-9, A-Z and one special character"
     );
   } else {
-    showSuccess(password, "Password is okay");
+    showSuccess(password, "Password is okay ✔");
   }
 
   if (password2.value === "") {
@@ -61,7 +61,7 @@ function validateForm(username, email, password, password2) {
   } else if (password.value !== password2.value) {
     showError(password2, "Password do not match");
   } else {
-    showSuccess(password2, "Passwords match!");
+    showSuccess(password2, "Passwords match! ✔");
   }
 }
 
