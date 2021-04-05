@@ -23,12 +23,16 @@ function showSuccess(input, successMessage) {
 }
 
 function validateForm(username, email, password, password2) {
+  const usernameRegex = /^[a-zA-Z0-9]{4,}$/;
   const passwordRegex = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/;
-
-  console.log(password);
 
   if (username.value === "") {
     showError(username, "Username is required");
+  } else if (!username.value.match(usernameRegex)) {
+    showError(
+      username,
+      "Username must contain at least 4 characters, a-z, A-Z"
+    );
   } else {
     showSuccess(username, "Username is valid");
   }
