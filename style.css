@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
+:root {
+  --success-color: green;
+  --error-color: red;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -33,6 +38,7 @@ h2 {
 
 .form-control {
   position: relative;
+  padding-bottom: 10px;
 }
 
 .form-control label {
@@ -51,7 +57,25 @@ h2 {
 
 .form-control input:focus {
   outline: 0;
-  border: 2px solid lightgreen;
+  border: 1px solid lightblue;
+}
+
+.form-control.success input {
+  border-color: var(--success-color);
+}
+
+.form-control.error input {
+  border-color: var(--error-color);
+}
+
+.form-control small {
+  color: var(--error-color);
+  position: absolute;
+  visibility: hidden;
+}
+
+.form-control.error small {
+  visibility: visible;
 }
 
 button {
